@@ -15,12 +15,9 @@ public class CircularList<T> implements CircularListInterface<T> {
         if (IsEmpty()) {
             Add(item);
         } else {
-            ListNode current = head;
-            while (current.GetNext() != head) {
-                current = current.GetNext();
-            }
+            ListNode lastNode = GetLastNode();
             ListNode newHead = new ListNode<T>(item, head);
-            current.SetNext(newHead);
+            lastNode.SetNext(newHead);
             head = newHead;
         }
         size++;
@@ -30,12 +27,9 @@ public class CircularList<T> implements CircularListInterface<T> {
         if (IsEmpty()) {
             Add(item);
         } else {
-            ListNode current = head;
-            while (current.GetNext() != head) {
-                current = current.GetNext();
-            }
+            ListNode lastNode = GetLastNode();
             ListNode tail = new ListNode<T>(item, head);
-            current.SetNext(tail);
+            lastNode.SetNext(tail);
         }
         size++;
     }
@@ -44,12 +38,9 @@ public class CircularList<T> implements CircularListInterface<T> {
         if (size == 1) {
             size--;
         } else {
-            ListNode current = head;
-            while (current.GetNext() != head) {
-                current = current.GetNext();
-            }
+            ListNode lastNode = GetLastNode();
             head = head.GetNext();
-            current.SetNext(head);
+            lastNode.SetNext(head);
             size--;
         }
     }
@@ -97,5 +88,13 @@ public class CircularList<T> implements CircularListInterface<T> {
     private void Add(T item) {
         head = new ListNode<T>(item, head);
         head.SetNext(head);
+    }
+
+    private ListNode GetLastNode() {
+        ListNode current = head;
+        while (current.GetNext() != head) {
+            current = current.GetNext();
+        }
+        return current;
     }
 }
