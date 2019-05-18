@@ -4,12 +4,12 @@ public class ListNode<T> {
     private ListNode<T> next;
 
     ListNode(T item, ListNode next) {
-        this.item = item;
-        this.next = next;
+        SetItem(item);
+        SetNext(next);
     }
 
     ListNode(T item) {
-        this.item = item;
+        SetItem(item);
     }
 
     public void SetItem(T item){
