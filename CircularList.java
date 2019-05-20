@@ -16,7 +16,7 @@ public class CircularList<T> implements CircularListInterface<T> {
             Add(item);
         } else {
             ListNode lastNode = GetLastNode();
-            ListNode newHead = new ListNode<T>(item, head);
+            ListNode newHead = new ListNode<>(item, head);
             lastNode.SetNext(newHead);
             head = newHead;
         }
@@ -28,7 +28,7 @@ public class CircularList<T> implements CircularListInterface<T> {
             Add(item);
         } else {
             ListNode lastNode = GetLastNode();
-            ListNode tail = new ListNode<T>(item, head);
+            ListNode tail = new ListNode<>(item, head);
             lastNode.SetNext(tail);
         }
         size++;
@@ -36,7 +36,7 @@ public class CircularList<T> implements CircularListInterface<T> {
 
     public void RemoveFront() {
         if (size == 1) {
-            size--;
+            RemoveFirst();
         } else {
             ListNode lastNode = GetLastNode();
             head = head.GetNext();
@@ -47,7 +47,7 @@ public class CircularList<T> implements CircularListInterface<T> {
 
     public void RemoveBack() {
         if (size == 1) {
-            size--;
+            RemoveFirst();
         } else {
             ListNode current = head;
             ListNode previous = null;
@@ -86,7 +86,7 @@ public class CircularList<T> implements CircularListInterface<T> {
     }
 
     private void Add(T item) {
-        head = new ListNode<T>(item, head);
+        head = new ListNode<>(item, head);
         head.SetNext(head);
     }
 
@@ -96,5 +96,10 @@ public class CircularList<T> implements CircularListInterface<T> {
             current = current.GetNext();
         }
         return current;
+    }
+
+    private void RemoveFirst() {
+        head = null;
+        size--;
     }
 }
